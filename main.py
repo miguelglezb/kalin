@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import dataread as dr
 import sys
+import units as uni
 
 
 Filenames = sys.argv[1:]
@@ -13,7 +14,6 @@ Filenames = sys.argv[1:]
 Data = [dr.phantom_evdata(i,pheaders=False) for i in Filenames]
 Keys = []
 same_keys = True
-
 
 
 for d in enumerate(Data):
@@ -53,9 +53,17 @@ print("Put number next to quantity: ")
 for n in range(Ncurves):
     Keys.append(str(int(input("Curve number "+ str(n+1) + ": ")) - 1))
 
-print(Columns)
+
+
+for i in Columns.values():
+    if i == 'time':
+            [Data[0][i], unit] = uni.change_unit(i,Data[0][i],ask=True)
+            if len(Data) > 1:
+                for d in enumerate(Data[1:]):
+                    [Data[d[0]+1][i], unit] = uni.change_unit(i,d[1][i],ask=False,unit=unit)
+       
 for k in Keys:
     for d in Data:
         plt.plot(d[Columns[x_val]], d[Columns[k]])
 
-plt.show() 
+plt.show()
