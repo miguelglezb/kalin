@@ -28,9 +28,20 @@ hours = ptu/(3600)
 
 time_units = {'0': [1, 'Phantom time units'], '1': [yrs, 'yrs'],
               '2': [days, 'days'], '3': [hours, 'hrs']}
-unit_name = {'time': time_units}
+length_units = {'0': [1, 'Phantom length units'], '1': [pdu, 'cm']}
+
+
+unit_name = {'time': time_units, 'x sep. 1': length_units, 'y sep. 1': length_units,
+             'z sep. 1': length_units, 'sep. 1': length_units}
+
 
 def change_unit(key,phys_quant,ask=False,unit=1):
+    """change_unit(key, phys_quant, ask=False, unit=1)
+        key: Name of column
+        phys_quant: Values of key
+        ask=False: If True, asks for a change of units for key
+        unit=1"""
+
     if ask == True:
         print('\n**************************************')
         print('**************************************\n')
@@ -38,8 +49,15 @@ def change_unit(key,phys_quant,ask=False,unit=1):
         print("Do you want to use one of the following units (applies just for Phantom data): \n")
 
         for i in unit_name[key]:
-            print(i+') ',unit_name[key][str(i)][1])
-        unit = unit_name[key][input()][0]
+            if i=='0':
+                print(i+') ',unit_name[key][str(i)][1],'(Default)') 
+            else:
+                print(i+') ',unit_name[key][str(i)][1])
+        try:
+            unit = unit_name[key][input()][0]
+        except KeyError:
+            unit = unit_name[key]['0'][0]
+      
     
     changed_quant = []
     for ph in phys_quant:

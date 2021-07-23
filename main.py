@@ -56,7 +56,7 @@ for n in range(Ncurves):
 
 
 for i in Columns.values():
-    if i == 'time':
+    if i == 'time' or i == 'sep. 1':
             [Data[0][i], unit] = uni.change_unit(i,Data[0][i],ask=True)
             if len(Data) > 1:
                 for d in enumerate(Data[1:]):
