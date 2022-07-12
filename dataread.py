@@ -81,12 +81,19 @@ def phantom_evdata(filename,pheaders=True):
     f.close()
     Row1 = raw_data[0]
     ncols = len(Row1.split(']'))-1
-    l_side, r_side = Row1.find('[')+3, Row1.find(']')-1 
-    width_header = Row1.find('[',Row1.find(']')) - Row1.find('[')
     headers, columns,  = [], []
-    for i in range(ncols):
-        headers.append(Row1[l_side+i*width_header:r_side+i*width_header+1].strip())
+    for i in Row1.split("]")[:-1]:
         columns.append([])
+        headers.append(i.strip('#').strip().strip("[").strip().lstrip('1234567890').strip())
+
+
+
+#    l_side, r_side = Row1.find('[')+3, Row1.find(']')-1 
+#    width_header = Row1.find('[',Row1.find(']')) - Row1.find('[')
+#    headers, columns,  = [], []
+#    for i in range(ncols):
+#        headers.append(Row1[l_side+i*width_header:r_side+i*width_header+1].strip())
+#        columns.append([])
     if pheaders==True:
         print(headers)
 
@@ -135,3 +142,39 @@ def plot_format(xlab,ylab, labeling=False):
     else: 
         print('Option not valid for labeling. Set as True for show.')
 
+
+#Conversion of units from Phantom to cgs, day, year... 
+
+class constants:
+    mass = 1.989E33 
+    time = 1.594E3 
+    dist = 6.96E10
+    vel = dist/time
+    dens = mass/dist**3
+    spangmom = dist**2/time
+    spener = (dist/time)**2
+    ener = mass*spener
+    angmom = mass*spangmom
+    pressure = ener/dist**3 
+    yr = time/(24*3600*365)
+    day = time/(24*3600)
+
+    def __init__(self,mass=mass,time=time,dist=dist,yr=yr,day=day,
+                    spangmom=spangmom,ener=ener,spener=spener,vel=vel,
+                    angmom=angmom,dens=dens, pressure=pressure):
+        """Phantom units in cgs"""
+        self.G = G 
+        self.mass = mass 
+        self.time = time 
+        self.dist = dist
+        self.vel = vel
+        self.dens = dens
+        self.spangmom = spangmom
+        self.spener = spener
+        self.angmom = angmom
+        self.ener = ener
+        self.pressure = pressure
+        self.yr = yr 
+        self.day = day 
+    
+        

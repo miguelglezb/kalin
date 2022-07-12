@@ -7,7 +7,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import dataread as dr
 
 #Phantom units
 ptu = 1594.                     #Phantom time units (seconds)
