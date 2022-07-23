@@ -158,12 +158,14 @@ class constants:
     pressure = ener/dist**3 
     yr = time/(24*3600*365)
     day = time/(24*3600)
+    hr = time/(3600)
+    au = 215
 
     def __init__(self,mass=mass,time=time,dist=dist,yr=yr,day=day,
                     spangmom=spangmom,ener=ener,spener=spener,vel=vel,
-                    angmom=angmom,dens=dens, pressure=pressure):
-        """Phantom units in cgs"""
-        self.G = G 
+                    angmom=angmom,dens=dens, pressure=pressure, au=au,hr=hr):
+        """Units used in cgs"""
+        
         self.mass = mass 
         self.time = time 
         self.dist = dist
@@ -176,5 +178,7 @@ class constants:
         self.pressure = pressure
         self.yr = yr 
         self.day = day 
+        self.hr = hr
+        self.au = au
     
         
