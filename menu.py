@@ -16,8 +16,7 @@ def print_main_menu():
 
 
 def units_main_menu():
-    print()
-    print()
+    print('\n \n')
     print('***Units menu***')
     print('------------------')
     print('List of units:')
@@ -29,8 +28,7 @@ def units_main_menu():
 
 
 def time_units_menu():
-    print()
-    print()
+    print('\n \n')
     print('***List of time units***')
     print('------------------')
     print('[s/S] ==> seconds [s]')
@@ -41,8 +39,7 @@ def time_units_menu():
 
 
 def length_units_menu():
-    print()
-    print()
+    print('\n \n')
     print('***List of length units***')
     print('------------------')
     print('[c/C] ==> centimeters [cm]')
@@ -53,8 +50,7 @@ def length_units_menu():
 
 
 def mass_units_menu():
-    print()
-    print()
+    print('\n \n')
     print('***List of mass units***')
     print('------------------')
     print('[g/G] ==> grams [g]')
